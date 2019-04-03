@@ -42,12 +42,16 @@ function generatePassword(options) {
   }
 
 
-
   // remove things user do not need
   if (options.excludeCharacters) {
     //判斷collection 是否含有 character
     //有的話回傳true，但因為需剔除掉，須回傳false ，加上 !
     collection = collection.filter(character => !options.excludeCharacters.includes(character));
+  }
+
+  // return error notice if collection is empty
+  if (collection.length === 0) {
+    return 'There is no valid characters in your selection.'
   }
 
   // start generating password
