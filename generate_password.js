@@ -5,7 +5,7 @@ function sample(array) {
 }
 
 // define generatePassword function
-function generatePassword() {
+function generatePassword(options) {
   // console.log('This function will generate password');
   // define things user might want
   const lowerCaseLetters = 'abcdefghiklmnopqrstuvwxyz';
@@ -14,16 +14,16 @@ function generatePassword() {
   const symbols = '`~!@$%^&*()-_+={}[]|;:"<>,.?/';
 
   // define dummy data
-  const options = {
-    length: 12,
-    lowercase: 'on',
-    uppercase: 'on',
-    numbers: 'on',
-    excludeCharacters: '40'
-  };
+  // const options = {
+  //   length: 12,
+  //   lowercase: 'on',
+  //   uppercase: 'on',
+  //   numbers: 'on',
+  //   excludeCharacters: '40'
+  // };
 
   // create a collection to store things user picked up
-  let collection = []
+  let collection = [];
 
   if (options.lowercase === 'on') {
     collection = collection.concat(lowerCaseLetters.split(''))
@@ -40,6 +40,7 @@ function generatePassword() {
   if (options.symbols === 'on') {
     collection = collection.concat(symbols.split(''))
   }
+
 
 
   // remove things user do not need
@@ -61,4 +62,7 @@ function generatePassword() {
 
 }
 
-generatePassword();
+// generatePassword();
+// 更改成利用 module exports 可以從 app.js 中使用 require 載入
+// export generatePassword function for other files to use
+module.exports = generatePassword;
