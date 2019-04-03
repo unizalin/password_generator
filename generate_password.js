@@ -31,9 +31,19 @@ function generatePassword() {
   if (options.symbols === 'on') {
     collection = collection.concat(symbols.split(''));
   }
-  console.log('collection' + collection);
-  // remove things user do not need
 
+  // remove things user do not need
+  if (options.excludeCharacters) {
+    console.log(`exclude characters: ${options.excludeCharacters}`)
+    collection = collection.filter(character => !options.excludeCharacters.includes(character)
+      //判斷collection 是否含有 character
+      //有的話回傳true，但因為需剔除掉，須回傳false ，加上 !
+
+      // if the character includes in 'excludeCharacters',
+      // return false to remove the character in the collection
+    );
+  }
+  console.log('collection' + collection);
   // start generating password
 
   // return the generated password
